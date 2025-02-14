@@ -11,3 +11,16 @@ l’utilisation d’**autoencodeurs**, un type de réseau de neurones largement 
 pour les tâches de reconstruction et de détection d’anomalies.
 
 
+Utilisation de **AutoVi dataset**
+
+
+
+Image : de taille : (*400x400*)
+
+
+![image du jeu de train](0000.png)
+
+
+## Utilisation de modèle autoencodeurs
+
+> AutoEncodeur : 
