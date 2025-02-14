@@ -1,5 +1,6 @@
 # Planning
 
+## Le planning
 Comprendre fonctionnement autoencodeurs et modèle (le sujet): 1 séance
 Création des données (importation du dataset, fonctions de visualisation et préparation des données): 1 séance
 Création modèle et entraînement: 2 séances
@@ -11,7 +12,7 @@ préparation oral: 1 séance
 
 
 
-#Idée:
+## Idée:
 Minimiser les Faux Positifs
 Localisation ?
-Utiliser TenserFlow ou Pytorch
+
