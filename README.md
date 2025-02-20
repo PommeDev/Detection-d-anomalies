@@ -50,8 +50,8 @@ Choix d'un autoencodeur: le type de réseau neuronal; la taille du code, nombre 
 Structures d'autoencodeurs: 
 * sous-complets: taille goulot d'étranglement fixe
 * régularisés: modification du calcul de l'erreur de reconstruction:  
- * épars (SAE): réduction du nb de noeuds ACTIVES à l'aide d'une fonction de parcimonie
- * contractifs: terme de régularisation qui pénalise le réseau lorsqu’il modifie la sortie, en réponse à des changements insuffisants dans l’entrée (enlève les bruits)
-* débruiteurs (DAE): même style mais pas de vérité terrain
+** épars (SAE): réduction du nb de noeuds ACTIVES à l'aide d'une fonction de parcimonie
+** contractifs: terme de régularisation qui pénalise le réseau lorsqu’il modifie la sortie, en réponse à des changements insuffisants dans l’entrée (enlève les bruits)
+** débruiteurs (DAE): même style mais pas de vérité terrain
 * Variationnels (VAE): GENERATION crée des nouveaux échantillons de données en variant des paramètres (repose sur la distribution de probas) !
  
