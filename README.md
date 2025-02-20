@@ -30,7 +30,9 @@ This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAl
 
 ## Utilisation de modèle autoencodeurs
 
-> AutoEncodeur : 
+> AutoEncodeur :
+>![image autoencodeur](Figure_1.png)
+> 
 apprentissage non supervisé (images pas étiquetées)
 but apparemment: c'est de compresser (encoder) et décompresser (décoder) les données
 il met en valeur les variables latentes (ce qui fait varier la catégorisation des images), pour les choisir: goulot d'étranglement
