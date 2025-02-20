@@ -4,7 +4,7 @@
 
   Tâches      | Nombre séances | Fait     |
  |-------------------|---|----|
- | Comprendre fonctionnement autoencodeurs et modèle (le sujet)    |1| Non|
+ | Comprendre fonctionnement autoencodeurs et modèle (le sujet)    |1| Oui|
  | Création des données (importation du dataset, fonctions de visualisation et préparation des données)      | 1  | Non       |
  | Création modèle et entraînement  | 2  | Non  |
  | rapport avancement  | 1  | Non  |
