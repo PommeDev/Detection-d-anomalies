@@ -22,8 +22,12 @@ pour les tâches de reconstruction et de détection d’anomalies. Bien que [[1]
 ## Analyse du sujet et déroulement
 
 
-Nous allons utiliser des autoencodeurs afin de créer un modèle de Deep Learning permettant la détection d'anomalies industrielles d'une base de données d'images de cablage de voitures.
+Nous allons utiliser des autoencodeurs afin de créer un modèle de Deep Learning permettant la détection d'anomalies industrielles dans une base de données d'images de cablage de voitures.
 Pour ce qui est du regroupement des photos d'entraînement, nous avons utilisé le dataset [Engine Wiring](#dataset)
+
+Nous utiliserons le language _Python_  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1z0LC70CF3lPE1Xe-Uka4Y5sSlLzrAVHCQg&s" alt="logo python" height= 15 weight=15>, pour tout l'implémentation et le code, et _R_ <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/R_logo.svg" alt="R logo" weight=15 height=15> pour une analyse statistique poussée.
+
+De plus nous utiliserons le framework _[PyTorch](https://pytorch.org/)_ <img src="https://blog.paperspace.com/content/images/size/w1050/2019/10/pytorch-logo-1.png" alt="pytorch logo" height=15 weight=15> 
 
 
 ## Le dataSet
@@ -42,25 +46,32 @@ Se sont des images au format : **400x400 pixels**
 <a id="autoencodeurs"></a>
 
 
-<img src="Figure_1.png" alt="Image d'autoencodeur" width="200" height="200">
+
 
 ----
 
 **Apprentissage non supervisé (images pas étiquetées)** [[2](#ibm1)]
 *But*: compresser (**encoder**) et décompresser (**décoder**) les données. <br>
-Il met en valeur les variables latentes (ce qui fait varier la catégorisation des images), pour les choisir: **goulot d'étranglement**<br>  
-**Espace latent**: ensemble des variables latentes.<br>
-l'autoencodeurs choisira ensuite quelles _variables latentes_ il garde pour décoder au mieux (le plus identiquement possible à l'original) les images
-taches génératives d'immages: (**VAE et AAE**)<br>
-Ces frameworks interviennent dans divers modèles d’apprentissage profond : par exemple dans les architectures de réseaux neuronaux convolutifs (CNN), utilisées dans les tâches de vision par ordinateur comme la segmentation d’images, ou dans les architectures de réseaux neuronaux récurrents (RNN), utilisées dans les tâches de séquence à séquence (seq2seq).
+Il met en valeur les variables latentes, les variables responsables de l'image, les vraies informations importantes (ce qui fait varier la catégorisation des images).
+Ainsi, l'**Espace latent** qui est l'ensemble des variables latentes, va être chercher par notre réseau.<br>
+l'autoencodeurs choisira ensuite quelles _variables latentes_ il garde pour décoder au mieux (le plus identiquement possible à l'original) les images.
 
-**Segmentation d'image**: segmenter l'image en groupes de pixels ayant les mêmes caractéristiques appelés masques de segmentation/ou classes sémantiques (et ça c'est de l'apprentissage supervisé?!).<br>
-**apprentissage autosupervisé** des autoencodeurs: car ce n'est pas supervisé mais la sortie est comparée à l'entrée donc on ne peut pas dire qu'il n'y a aucune supervisation <br>
-encodeurs: _réduit la dimension_ (de moins en moins de neurones par couches)
-goulot d'étranglement (le moins de noeuds; couche d'entrée du décodeur et couche de sortie de l'encodeur) (le code en sortant c'est la représentation de l'espace latent)
-décodeurs: décompressement et comparaison à la vérité terrain (entrée d'origine), il y aura des erreurs de reconstruction. Il peut être supprimé à la fin, dans les applications de génération d'image (par exemple). <br>
-Choix d'un autoencodeur: le type de réseau neuronal; la taille du code, nombre de couches, nombre de noeud par couches et la fonction de perte.
-Structures d'autoencodeurs: 
+>Ces frameworks interviennent dans divers modèles d’apprentissage profond : par exemple dans les architectures de réseaux neuronaux convolutifs (CNN), utilisées dans les tâches de vision par ordinateur comme la segmentation d’images, ou dans les architectures de réseaux neuronaux récurrents (RNN), utilisées dans les tâches de séquence à séquence (seq2seq).
+
+**Segmentation d'image**: segmenter l'image en groupes de pixels ayant les mêmes caractéristiques appelés masques de segmentation/ou classes sémantiques.<br>
+
+Les autoencodeur font appellent à un nouveau type d'apprentissage l'**apprentissage autosupervisé**: car ce n'est pas supervisé mais la sortie est comparée à l'entrée donc on ne peut pas dire qu'il n'y a aucune supervisation. <br>
+Les AutoEncodeurs se distinguent par leurs constructions, en effet il sont constitués de 3 partie :
+1. **Encodeurs**: _réduit la dimension_ (de moins en moins de neurones par couches), le code sortant est la représentation de l'espace latent. Donc il contient le maximum d'information importantes (un peu comme l'ACP).
+décodeurs:  Il peut être supprimé à la fin, dans les applications de génération d'image (par exemple).  
+2. **Goulot d'étranglement**: La partie où l'entré est le plus compréssée, sa taille peu être fixer, ou entrainée.
+3. **Décodeur**: Décompressement et comparaison à la vérité terrain (entrée d'origine), le but de cette partie est de recréer l'entrée d'origine avec la sortie du goulot d'étranglment. A la fin, il y aura des erreurs de reconstruction, qui seront analyser pour détecter les anomalies, ou tester la performance du réseau.
+   
+<img src="Figure_1.png" alt="Image d'autoencodeur" width="200" height="200">
+
+Le choix d'un autoencodeur se fait selon plusieurs critères: le type de réseau neuronal, la taille du code, nombre de couches, nombre de noeud par couches et la fonction de perte.
+
+Il y a plusieurs structures d'autoencodeurs: 
 * **sous-complets**: taille goulot d'étranglement fixe
 * **régularisés**: modification du calcul de l'erreur de reconstruction:
   - épars (SAE): réduction du nb de noeuds ACTIVES à l'aide d'une fonction de parcimonie
