@@ -1,6 +1,6 @@
 # Detection-d-anomalies
 
->L’objectif principal de ce projet est de concevoir et d’entraîner un modèle de Deep Learning dédié à la détection d’anomalies dans un contexte industriel. Plus
+L’objectif principal de ce projet est de concevoir et d’entraîner un modèle de Deep Learning dédié à la détection d’anomalies dans un contexte industriel. Plus
 précisément, nous travaillerons avec une base de données publique composée
 d’images de câblages de voitures [(cf dataset)](#dataset). 
 
@@ -74,8 +74,11 @@ Structures d'autoencodeurs:
  ### Erreur de reconstruction 
 
  Plusieurs formules existe : 
-  MSE : $\frac{1}{n}\sum (y_i - e_i)^2, e_i \text{ vrai valeur}, y_i \text{  valeur prédite}$
+  **Erreur Moyenne Quadratique** (MSE) : $\frac{1}{n}\sum (y_i - e_i)^2, \space e_i \text{ vrai valeur}, y_i \text{  valeur prédite}$
 
+  **Erreur Moyenne Absolue** (MAE) : $\frac{1}{n}\sum |y_i-e_i| , \space e_i \text{ vrai valeur}, y_i \text{  valeur prédite}$ 
+
+  **Entropie Croisée** : $- \sum_x p(x)\log q(x) , \space p \text{ vraie distribution }, q \text{ distribution observée}$
 
 
 ## Sources
