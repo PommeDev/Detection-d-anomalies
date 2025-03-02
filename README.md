@@ -104,6 +104,9 @@ Il y a plusieurs structures d'autoencodeurs:
 <a id="link_dataset"></a>
 https://autovi.utc.fr/index_fr.html
 
+----
+Carvalho, P., Lafou, M., Durupt, A., Leblanc, A, & Grandvalet, Y. (2024). The Automotive Visual Inspection Dataset (AutoVI): A Genuine Industrial Production Dataset for Unsupervised Anomaly Detection [Dataset]. https://doi.org/10.5281/zenodo.10459003
+----
 <p>
 License:
 Copyright © 2023-2024 Renault Group
