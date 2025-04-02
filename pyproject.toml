@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "matplotlib",
+    "scipy>=1.15.2",
     "torch",
     "torchaudio",
     "torchvision",
