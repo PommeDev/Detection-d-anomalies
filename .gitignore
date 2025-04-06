@@ -6,3 +6,7 @@ graphe.py
 pytorchetest.py
 data
 model_weights.pth
+test_save_loc.ipynb
+.Rproj.user
+.RData
+.Rhistory

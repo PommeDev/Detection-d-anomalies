@@ -1,0 +1,147 @@
+---
+title: "statistique"
+output: html_document
+---
+```{r}
+
+library(ggplot2)
+library(patchwork)
+library(corrplot)
+library(stringr)
+library(reshape2)
+library(factoextra)
+library(FactoMineR)
+library(ggpubr)
+library(ggrepel)
+
+library(mclust)
+library(cluster)
+library(ppclust)
+
+library(circlize)
+library(ggalluvial)
+
+library(devtools)
+library(tidyr)
+
+
+```
+
+
+```{r}
+data <- read.table("result.csv", sep=",")
+data$V1 <- as.factor(data$V1)
+data$Type <- data$V1
+data$Reconstruction <- data$V2
+data$Reconstruction <- as.numeric(data$Reconstruction)
+data <- data[c(3,4)]
+
+
+
+```
+
+
+# Histogramme
+
+
+```{r}
+
+ggplot(data, aes(x = Reconstruction, fill = Type)) +
+  geom_histogram(position = "identity", alpha = 0.6, bins = 30) +
+  scale_fill_manual(values = c("good" = "steelblue", "anomalie" = "firebrick")) +
+  theme_minimal() +
+  labs(
+    title = "Histogramme des valeurs par type",
+    x = "Valeur",
+    y = "Fréquence",
+    fill = "Type"
+  )
+```
+
+```{r}
+ggplot(data, aes(x = Reconstruction, fill = Type)) +
+  geom_histogram(position = "dodge", bins = 30) 
+  scale_fill_manual(values = c("good" = "steelblue", "anomalie" = "firebrick")) +
+  theme_minimal() +
+  labs(
+    title = "Histogramme des valeurs par type (comparaison côte à côte)",
+    x = "Valeur",
+    y = "Fréquence",
+    fill = "Type"
+  )
+```
+
+```{r}
+ggplot(data, aes(x = Reconstruction, fill = Type, color = Type)) +
+  geom_histogram(aes(y = ..density..), position = "identity", alpha = 0.4, bins = 30) +
+  geom_density(size = 1.2) +
+  scale_fill_manual(values = c("good" = "steelblue", "anomalie" = "firebrick")) +
+  scale_color_manual(values = c("good" = "steelblue", "anomalie" = "firebrick")) +
+  theme_minimal() +
+  labs(
+    title = "Histogramme et courbe de densité par type",
+    x = "Valeur",
+    y = "Densité",
+    fill = "Type",
+    color = "Type"
+  )
+```
+
+
+
+```{r}
+good_vals <- data$Reconstruction[data$Type == "good"]
+anomalie_vals <- data$Reconstruction[data$Type == "anomalie"]
+
+
+
+# Pour GOOD
+hist(good_vals, probability = TRUE, col = "lightblue", main = "Distribution de GOOD", xlab = "Valeur")
+lines(density(good_vals), col = "blue", lwd = 2)
+curve(dnorm(x, mean(good_vals), sd(good_vals)), add = TRUE, col = "darkblue", lwd = 2, lty = 2)
+
+# Pour ANOMALIE
+hist(anomalie_vals, probability = TRUE, col = "salmon", main = "Distribution d'ANOMALIE", xlab = "Valeur")
+lines(density(anomalie_vals), col = "red", lwd = 2)
+curve(dnorm(x, mean(anomalie_vals), sd(anomalie_vals)), add = TRUE, col = "darkred", lwd = 2, lty = 2)
+
+
+quantile(good_vals)
+quantile(anomalie_vals)
+
+# Ou des quantiles personnalisés
+quantile(good_vals, probs = c(0.01, 0.05, 0.95, 0.99))
+quantile(anomalie_vals, probs = c(0.01, 0.05, 0.95, 0.99))
+
+```
+
+#Le but dan sla suit est de dire quil ya une anomalie si au dessus du quantile 95%
+
+```{r}
+
+a <- quantile(good_vals, probs = 0.95)
+
+anomalie_estimate <- data$Type[data$Reconstruction > a]
+
+length(anomalie_estimate)
+
+```
+
+
+
+
+
+```{r}
+
+
+a <- quantile(good_vals, probs = 0.55)
+b <- quantile(good_vals,probs = 0.45)
+
+anomalie_estimate <- data$Type[data$Reconstruction > a | data$Reconstruction < b]
+
+length(anomalie_estimate[anomalie_estimate == 'good'])
+
+```
+
+
+

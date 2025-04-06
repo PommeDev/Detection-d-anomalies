@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "csv",
     "matplotlib",
     "scipy>=1.15.2",
     "torch",
