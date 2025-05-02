@@ -1,0 +1,8 @@
+BCE 10
+MSE 0
+Poisson nll 6
+cross entropy 5
+MAE 10
+hinge_embeding 11
+kl_div 11
+huber_loss 11
