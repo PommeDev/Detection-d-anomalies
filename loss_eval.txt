@@ -1,4 +1,8 @@
 POISSON nll <0.76 -> Pas ouf
 L1 loss > 0.1 -> Vraiment pas mal
+MSE loss >0.04  -> BOF (192,214,71,130)
+BCE loss > 0.075 -> Bof (202,179,106,120)
+BCE Logits > 0.07 -> OK (239,158,127,83)
+CSINE_EMBEDING <0.899 -> OK
 
-
+265 161 134 57
