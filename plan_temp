@@ -1,0 +1,15 @@
+I/Contexte (pourquoi)
+
+a) données
+b) Recherche
+
+
+II/Modèle (quel modelèle, choix du modèle, implémentation)
+
+a) AutoEncodeur : diagramme autoencodeur
+b) Notre autoencodeur -> couches machin pourquoi : diagramme de notre autoencodeur
+c) Entrainement: choix loss,image loss qui descend, imag de l'entrainement
+
+III/Evaluation du modèle
+a) Choix du seuil
+b) ROC AUROC etc ....
