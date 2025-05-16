@@ -1,0 +1,36 @@
+I/Contexte (pourquoi)
+La détection d'anomalie c'est quoi ? Comment on en fait ? Les techniques utilisées
+Le contexte générale de l'étude
+
+a) Etat de l'art:
+Comment faire de la detection d'anomalie ? Les méthodes utilisées
+
+b) Notre cadre 
+Les données : Le dataset + image du DataSet
+La programmation : Langages
+
+
+II/Modèle
+Dans cette partie, nous allons présenter le modèle
+
+a) AutoEncodeur :
+C'est quoi un autoencodeur (Diagramme) 
+
+b) Notre autoencodeur:
+Les couches utilisées et pourquoi -> Fonctions mathématiques
+
+c) Entrainement: 
+Choix de la loss -> images de l'entrainement, image loss qui diminue
+
+III/Evaluation du modèle
+Comment on a évalué notre modèle, 
+
+a) Choix du seuil:
+ Histogramme de Anomalie/Pas Anomalie et répartition
+
+b) Les différentes métriques
+Courbes ROC,AUROC, Matrice de confusion ....
+
+c) Crédibilité du modèle
+
+IV/ Bibliographie
